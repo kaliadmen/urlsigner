@@ -38,6 +38,8 @@ func (s *Signer) IsValidToken(token string) bool {
 	return true
 }
 
+// IsExpired checks to see if a token has expired. It returns true if
+// the token was created within minutesUntilExpire, and false otherwise.
 func (s *Signer) IsExpired(token string, minutesUntilExpiration int) bool {
 	crypt := goalone.New(s.Secret, goalone.Timestamp)
 	timeSince := crypt.Parse([]byte(token))
